@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 #
-# script  : web.sh
+# script  : omyweb.sh
 # date    : 27-02-23
 # author  : rnek0
 # licence : Open my website © 2023 by Tony Simoes is licensed under CC BY-NC 4.0 
@@ -9,11 +9,9 @@
 # Colors
 RED=$(printf '\033[31m')
 BLUE=$(printf '\033[34m')
-BOLD=$(printf '\033[1m')
 RESET=$(printf '\033[m')
 
 web="https://web.lunarviews.net"
-$SUCCES = 0
 
 # Yes or not ?
 function yes_or_no() {
@@ -21,17 +19,17 @@ function yes_or_no() {
     read -p "$* [y/n]: " yn
       case $yn in
         [Yy]*) return 0  ;;  
-        [Nn]*) echo "Proceso anulado." ; exit $SUCCES ;;
+        [Nn]*) echo "Proceso anulado." ; exit 0 ;;
       esac
   done
 }
 
 cat <<End-of-message
 ${RED}
-░░░░░░  ░░░    ░░ ░░░░░░░ ░░   ░░  ░░░░░░                                                                                               ▒
-▒▒   ▒▒ ▒▒▒▒   ▒▒ ▒▒      ▒▒  ▒▒  ▒▒  ▒▒▒▒                                                                                              ▒
-▒▒▒▒▒▒  ▒▒ ▒▒  ▒▒ ▒▒▒▒▒   ▒▒▒▒▒   ▒▒ ▒▒ ▒▒                                                                                              ▒
-▓▓   ▓▓ ▓▓  ▓▓ ▓▓ ▓▓      ▓▓  ▓▓  ▓▓▓▓  ▓▓                                                                                              ▒
+░░░░░░  ░░░    ░░ ░░░░░░░ ░░   ░░  ░░░░░░         
+▒▒   ▒▒ ▒▒▒▒   ▒▒ ▒▒      ▒▒  ▒▒  ▒▒  ▒▒▒▒        
+▒▒▒▒▒▒  ▒▒ ▒▒  ▒▒ ▒▒▒▒▒   ▒▒▒▒▒   ▒▒ ▒▒ ▒▒        
+▓▓   ▓▓ ▓▓  ▓▓ ▓▓ ▓▓      ▓▓  ▓▓  ▓▓▓▓  ▓▓        
 ██   ██ ██   ████ ███████ ██   ██  ██████  ${BLUE}   
 en https://dev.lunarviews.net
 ${RESET}
@@ -43,7 +41,7 @@ End-of-message
 if [ -z $1 ]; then
   echo "Abrir la pagina: ${web} ?";
   yes_or_no
-  xdg-open ${web} &
+  xdg-open ${web}
 else 
   echo "Abrir la pagina: $1 ?"; 
   yes_or_no
