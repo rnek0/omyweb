@@ -40,7 +40,7 @@ End-of-message
 if [ -z $1 ]; then
   echo " Abrir la web ${web} ?";
   yes_or_no
-  xdg-open ${web}
+  xdg-open ${web} &
 else 
   if [[ $1 =~ $regex ]]; then
     echo " Abrir la web $1 ?"; 
