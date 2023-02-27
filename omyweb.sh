@@ -12,6 +12,7 @@ BLUE=$(printf '\033[34m')
 RESET=$(printf '\033[m')
 
 web="https://web.lunarviews.net"
+regex='(https?|ftp|file)://[-[:alnum:]\+&@#/%?=~_|!:,.;]*[-[:alnum:]\+&@#/%=~_|]'
 
 # Yes or not ?
 function yes_or_no() {
@@ -19,31 +20,33 @@ function yes_or_no() {
     read -p "$* [y/n]: " yn
       case $yn in
         [Yy]*) return 0  ;;  
-        [Nn]*) echo "Proceso anulado." ; exit 0 ;;
+        [Nn]*) echo " Proceso anulado." ; exit 0 ;;
       esac
   done
 }
 
 cat <<End-of-message
 ${RED}
-░░░░░░  ░░░    ░░ ░░░░░░░ ░░   ░░  ░░░░░░         
-▒▒   ▒▒ ▒▒▒▒   ▒▒ ▒▒      ▒▒  ▒▒  ▒▒  ▒▒▒▒        
-▒▒▒▒▒▒  ▒▒ ▒▒  ▒▒ ▒▒▒▒▒   ▒▒▒▒▒   ▒▒ ▒▒ ▒▒        
-▓▓   ▓▓ ▓▓  ▓▓ ▓▓ ▓▓      ▓▓  ▓▓  ▓▓▓▓  ▓▓        
-██   ██ ██   ████ ███████ ██   ██  ██████  ${BLUE}   
-en https://dev.lunarviews.net
-${RESET}
-
-Te gustaria ver mi pagina web ?
-
+                                        __  
+   ____  ____ ___  __  ___      _____  / /_  
+  / __ \/ __ \`__ \/ / / / | /| / / _ \/ __ \ 
+ / /_/ / / / / / / /_/ /| |/ |/ /  __/ /_/ / 
+ \____/_/ /_/ /_/\__  / |__/|__/\___/_____/  
+                /____/                       
+${BLUE}         https://dev.lunarviews.net               
+${RESET}                                    
 End-of-message
 
 if [ -z $1 ]; then
-  echo "Abrir la pagina: ${web} ?";
+  echo " Abrir la web ${web} ?";
   yes_or_no
   xdg-open ${web}
 else 
-  echo "Abrir la pagina: $1 ?"; 
-  yes_or_no
-  xdg-open $1 &
+  if [[ $1 =~ $regex ]]; then
+    echo " Abrir la web $1 ?"; 
+    yes_or_no
+    xdg-open $1 &
+  else
+    echo -e " ${RED}[!] Debes introducir una URL válida.${RESET}\n"
+  fi
 fi
