@@ -43,9 +43,9 @@ End-of-message
 if [ -z $1 ]; then
   echo "Abrir la pagina: ${web} ?";
   yes_or_no
-  xdg-open ${web}
+  xdg-open ${web} &
 else 
   echo "Abrir la pagina: $1 ?"; 
   yes_or_no
-  xdg-open $1
+  xdg-open $1 &
 fi
