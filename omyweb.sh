@@ -33,7 +33,7 @@ ${RED}
  / /_/ / / / / / / /_/ /| |/ |/ /  __/ /_/ / 
  \____/_/ /_/ /_/\__  / |__/|__/\___/_____/  
                 /____/                       
-${BLUE}         https://dev.lunarviews.net               
+${BLUE}         https://web.lunarviews.net               
 ${RESET}                                    
 End-of-message
 
